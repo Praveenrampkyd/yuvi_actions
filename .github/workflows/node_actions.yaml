@@ -47,9 +47,9 @@ jobs:
         run: |
           echo "Connecting to host: ${{ secrets.HOST_IP }}"
 
-      # - name: Login test
-      #   run: |
-      #     sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -T -p "${{ secrets.HOST_PORT }}" "${{ secrets.SSH_USERNAME }}"@"${{ secrets.HOST_IP }}"
+      - name: Login test
+        run: |
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -T -p "${{ secrets.HOST_PORT }}" "${{ secrets.SSH_USERNAME }}"@"${{ secrets.HOST_IP }}"
 
       # - name: Stop PM2 process
       #   run: |
