@@ -1,4 +1,4 @@
-name: Node Application Deployment
+name: Node Based Application Deployment
 
 on:
   push:
