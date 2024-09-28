@@ -23,6 +23,7 @@ jobs:
 
       - name: Configure AWS CLI
         run: |
+          mkdir -p ~/.aws
           echo "[default]" > ~/.aws/config
           echo "region = ${{ secrets.AWS_DEFAULT_REGION }}" >> ~/.aws/config
           echo "[default]" > ~/.aws/credentials
