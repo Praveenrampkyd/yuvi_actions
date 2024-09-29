@@ -34,13 +34,9 @@ jobs:
         run: |
           aws s3 cp "${{ secrets.BUCKET }}"/.env .env
 
-      - name: Install dependencies
-        run: |
-          npm install
-
-      - name: Login test
-        run: |
-          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no -T -p "${{ secrets.HOST_PORT }}" -v "${{ secrets.SSH_USERNAME }}"@"${{ secrets.HOST_IP }}"
+      # - name: Install dependencies
+      #   run: |
+      #     npm install
 
       - name: Stop PM2 process
         run: |
@@ -52,8 +48,8 @@ jobs:
         run: |
           sshpass -p "${{ secrets.SSH_PASSWORD }}" scp -r -P "${{ secrets.HOST_PORT }}" * "${{ secrets.SSH_USERNAME }}"@"${{ secrets.HOST_IP }}":/home/ubuntu/signup/
 
-      - name: Start PM2 process
-        run: |
-          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no -T -p "${{ secrets.HOST_PORT }}" "${{ secrets.SSH_USERNAME }}"@"${{ secrets.HOST_IP }}" "
-            source ~/.nvm/nvm.sh && pm2 restart 0 --update-env
-          "
+      # - name: Start PM2 process
+      #   run: |
+      #     sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no -T -p "${{ secrets.HOST_PORT }}" "${{ secrets.SSH_USERNAME }}"@"${{ secrets.HOST_IP }}" "
+      #       source ~/.nvm/nvm.sh && pm2 restart 0 --update-env
+      #     "
