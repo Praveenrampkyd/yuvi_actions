@@ -38,15 +38,6 @@ jobs:
         run: |
           npm install
 
-      - name: path
-        run: |
-          pwd
-          ls -la
-
-      - name: IP check
-        run: |
-          echo "Connecting to host: ${{ secrets.HOST_IP }}"
-
       - name: Login test
         run: |
           sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no -T -p "${{ secrets.HOST_PORT }}" -v "${{ secrets.SSH_USERNAME }}"@"${{ secrets.HOST_IP }}"
@@ -57,8 +48,12 @@ jobs:
             source ~/.nvm/nvm.sh && pm2 stop 0
           "
       
-      - name: pm2 status
+      - name: Deploy application
         run: |
-          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no -T -p "${{ secrets.HOST_PORT }}" "${{ secrets.SSH_USERNAME }}"@"${{ secrets.HOST_IP }}" "        
-            source ~/.nvm/nvm.sh && pm2 list
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" scp -r -P "${{ secrets.HOST_PORT }}" . "${{ secrets.SSH_USERNAME }}"@"${{ secrets.HOST_IP }}":/home/ubuntu/signup/
+
+      - name: Start PM2 process
+        run: |
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no -T -p "${{ secrets.HOST_PORT }}" "${{ secrets.SSH_USERNAME }}"@"${{ secrets.HOST_IP }}" "
+            source ~/.nvm/nvm.sh && pm2 restart 0 --update-env
           "
