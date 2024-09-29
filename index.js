@@ -13,6 +13,11 @@ app.get('/', (req, res) => {
     res.json({ message: 'Root page' });
 });
 
+
+app.get('/signup/actions', (req, res) => {
+    res.json({ message: 'Github actions working' });
+});
+
 app.get('/signup', (req, res) => {
     res.json({ message: 'This is the endpoint from signup' });
 });
