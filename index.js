@@ -18,6 +18,11 @@ app.get('/signup/actions', (req, res) => {
     res.json({ message: 'Github actions working' });
 });
 
+app.get('/signup/runner', (req, res) => {
+    res.json({ message: 'Github hosted runner' });
+});
+
+
 app.get('/signup', (req, res) => {
     res.json({ message: 'This is the endpoint from signup' });
 });
