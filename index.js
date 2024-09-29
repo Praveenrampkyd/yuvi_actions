@@ -22,6 +22,9 @@ app.get('/signup/runner', (req, res) => {
     res.json({ message: 'Github hosted runner' });
 });
 
+app.get('/signup/pm2', (req, res) => {
+    res.json({ message: 'Application run in pm2' });
+});
 
 app.get('/signup', (req, res) => {
     res.json({ message: 'This is the endpoint from signup' });
