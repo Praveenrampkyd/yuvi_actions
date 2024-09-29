@@ -46,7 +46,7 @@ jobs:
       
       - name: Deploy application
         run: |
-          sshpass -p "${{ secrets.SSH_PASSWORD }}" scp -r -P "${{ secrets.HOST_PORT }}" * "${{ secrets.SSH_USERNAME }}"@"${{ secrets.HOST_IP }}":/home/ubuntu/signup/
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" scp -r -P "${{ secrets.HOST_PORT }}" * .env "${{ secrets.SSH_USERNAME }}"@"${{ secrets.HOST_IP }}":/home/ubuntu/signup/
 
       # - name: Start PM2 process
       #   run: |
