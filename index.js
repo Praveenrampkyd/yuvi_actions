@@ -13,6 +13,9 @@ app.get('/', (req, res) => {
     res.json({ message: 'Root page' });
 });
 
+app.get('/signup/cicd', (req, res) => {
+    res.json({ message: 'deployment pipeline' });
+});
 
 app.get('/signup/actions', (req, res) => {
     res.json({ message: 'Github actions working' });
